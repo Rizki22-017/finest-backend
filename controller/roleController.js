@@ -1,6 +1,5 @@
 const { Role } = require('../models');
 
-// Menampilkan daftar role yang tersedia
 exports.getRoles = async (req, res) => {
     try {
         const roles = await Role.findAll();

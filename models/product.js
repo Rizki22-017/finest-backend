@@ -38,15 +38,12 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Product',
   });
 
-  // Fungsi untuk menghitung estimasi
+
   const calculateEstimates = (product) => {
-    // Estimasi Pendapatan
     const estimatedIncome = product.production_capacity * product.selling_price;
 
-    // Estimasi Biaya yang Dikelola
     const managedFunds = product.feed_cost + product.worker_cost + product.maintenance_cost;
 
-    // Proyeksi Margin Kotor
     const grossMargin = ((estimatedIncome - managedFunds) / estimatedIncome) * 100;
 
     return {
@@ -56,21 +53,17 @@ module.exports = (sequelize, DataTypes) => {
     };
   };
 
-  // Hook sebelum create
   Product.addHook('beforeCreate', (product, options) => {
     const { estimatedIncome, managedFunds, grossMargin } = calculateEstimates(product);
 
-    // Set nilai estimasi ke dalam kolom yang sesuai
     product.estimated_income = estimatedIncome;
     product.funds_managed = managedFunds;
     product.margin = grossMargin;
   });
 
-  // Hook sebelum update
   Product.addHook('beforeUpdate', (product, options) => {
     const { estimatedIncome, managedFunds, grossMargin } = calculateEstimates(product);
 
-    // Set nilai estimasi ke dalam kolom yang sesuai
     product.estimated_income = estimatedIncome;
     product.funds_managed = managedFunds;
     product.margin = grossMargin;

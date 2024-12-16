@@ -140,9 +140,8 @@ exports.updateProduct = async (req, res) => {
     existingProduct.funds_managed = parseFloat(funds_managed);
     existingProduct.margin = parseFloat(margin);
 
-    // Update product_pict only if a new image is uploaded
     if (req.file) {
-      existingProduct.product_pict = req.file.path; // Save new image path
+      existingProduct.product_pict = req.file.path; 
     }
 
     await existingProduct.save();
