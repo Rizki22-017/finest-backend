@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     estimated_income: DataTypes.FLOAT,
     funds_managed: DataTypes.FLOAT,
     margin: DataTypes.FLOAT,
+    funds_collected: DataTypes.FLOAT,
     product_pict: DataTypes.STRING,
   }, {
     sequelize,

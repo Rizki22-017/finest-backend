@@ -55,6 +55,9 @@ module.exports = {
       margin: {
         type: Sequelize.FLOAT
       },
+      funds_collected: {
+        type: Sequelize.FLOAT
+      },
       product_pict: {
         type: Sequelize.STRING
       },
